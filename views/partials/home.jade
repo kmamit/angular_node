@@ -1,0 +1,30 @@
+div
+    div.row
+        
+        div.col-md-6
+            h4 Select Number of Assitants : 
+        div.col-md-6
+            div.dropdown
+            button.btn.btn-default.dropdown-toggle#dropdownMenu1(type="button",data-toggle="dropdown", aria-haspopup="true", aria-expanded="true") # {{number_of_assitants}}
+                    span.caret
+                ul.dropdown-menu(aria-labelledby="dropdownMenu1")
+                    li(ng-repeat='i in getNumber(number)')
+                        a(href="javascript: void(0)", ng-click="select_number($index+1)") {{$index+1}}
+
+
+    
+    div.row(ng-if="total_input > 0")
+        form(name="userForm", novalidate)
+            div.form-group(ng-repeat="user in formData.users", ng-class="{ 'has-error' : userFieldForm.ass_name.$invalid }")
+                ng-form(name="userFieldForm")
+                    label Add Name:
+                    input.form-control(type="text",name="ass_name", ng-model="user.ass_name",required,ng-minlength="3")
+                    p.help-block(ng-show="userFieldForm.ass_name.$invalid && userFieldForm.ass_name.$dirty") Please Enter a Valid Name for Assistant  
+            
+            button.btn.btn-primary(ng-disabled="userForm.$invalid", ng-show="total_input>0") Proceed
+                    
+
+
+      
+
+
