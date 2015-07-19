@@ -2,7 +2,7 @@ div
     div.row
         
         div.col-md-6
-            h4 Select Number of Assitants : 
+            h4 Select Number of Assitants To Add : 
         div.col-md-6
             div.dropdown
             button.btn.btn-default.dropdown-toggle#dropdownMenu1(type="button",data-toggle="dropdown", aria-haspopup="true", aria-expanded="true") # {{number_of_assitants}}
@@ -23,6 +23,20 @@ div
             
             button.btn.btn-primary(ng-disabled="assisForm.$invalid", ng-show="total_input>0",data-toggle="modal" ,data-target="#permissionModal") Proceed
     
+    hr
+    h5 Present Assistants:
+    div.row(ng-init="check_for_assistants()")
+    table.table.table-striped
+        thead
+            tr
+                th Name 
+                th Calendar Permissions
+                th Practice Location Permissions
+        tbody
+            tr(ng-repeat='assistant in assistants | reverse') 
+                td {{assistant.name}}
+                td {{assistant.calendar | decode_permissions}}
+                td {{assistant.practice_location | decode_permissions}}
     div.modal.fade#permissionModal(tabindex="-1" ,role="dialog", aria-labelledby="myModalLabel")
         div.modal-dialog(role="document")
             div.modal-content

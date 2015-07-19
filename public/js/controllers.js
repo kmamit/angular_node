@@ -13,7 +13,7 @@ angular.module('myApp.controllers', []).
 
   }).
   controller('Home', function ($scope,$http,DataForApp) {
-    $scope.number = 5;
+    $scope.number = 6;
     $scope.check = 0;
     $scope.show_tab = 0;
     $scope.number_of_assitants = 0;
@@ -70,7 +70,7 @@ angular.module('myApp.controllers', []).
                 $scope.number_of_assitants = 0;
                 $scope.total_input = 0;
                 $scope.assisData = {};
-                
+                $scope.check_for_assistants();
             
             }else{
                 $scope.status = "Error";
@@ -92,9 +92,15 @@ angular.module('myApp.controllers', []).
         }
             
     };
+    $scope.check_for_assistants = function(){
+        DataForApp.get_doctor_with_assistants().then(function(data){
+            console.log('checking assistants');
+            console.log(data);
+            $scope.assistants = data.data.Assistants;
+            
 
-  }).
-  controller('MyCtrl2', function ($scope) {
-    // write Ctrl here
+        });
+    };
+    
 
   });

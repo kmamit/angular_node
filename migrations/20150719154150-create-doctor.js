@@ -1,4 +1,5 @@
 'use strict';
+var models  = require('../models');
 module.exports = {
   up: function(queryInterface, Sequelize) {
     return queryInterface.createTable('Doctors', {
@@ -19,6 +20,8 @@ module.exports = {
         allowNull: false,
         type: Sequelize.DATE
       }
+    }).then(function(){
+        models.Doctor.bulkCreate({'name':'Amit Kumar'})
     });
   },
   down: function(queryInterface, Sequelize) {

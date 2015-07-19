@@ -28,6 +28,7 @@ angular.module('myApp.services', [])
         this.current_doctor_id = function() { 
             return doctor.id;
         };
+        
         this.save_assistants = function(data){
             var promise =         $http({
                                         method: 'POST',
