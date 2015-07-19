@@ -20,11 +20,15 @@ angular.module('myApp.controllers', []).
   controller('Home', function ($scope) {
     $scope.number = 5;
     $scope.check = 0;
+    $scope.show_tab = 0;
     $scope.number_of_assitants = 0;
     $scope.getNumber = function(num) {
         console.log(num);
         return new Array(num);   
     };
+    $scope.change_tab = function(num){
+        $scope.show_tab = num;
+    }
     // for selecting number of assistants to add
     $scope.select_number = function(num){
         $scope.number_of_assitants = num;
@@ -33,12 +37,19 @@ angular.module('myApp.controllers', []).
         var names_array = [];
         
         for(var i=0;i<num;i++){
-            var name_obj = {'ass_name':""};    
+            var name_obj = {'ass_name':"",
+                            'calendar':{'view':'',
+                                        'edit':''
+                                       },
+                            'practice_location':{'view':'',
+                                        'edit':''
+                                       }
+                           };    
             names_array.push(name_obj);
         }
-        $scope.formData = {};
-        $scope.formData.users = names_array;
-        console.log($scope.formData.users);
+        $scope.assisData = {};
+        $scope.assisData.assistants = names_array;
+        
     };
     
     $scope.range = function(min, max, step){
@@ -46,6 +57,14 @@ angular.module('myApp.controllers', []).
         var input = [];
         for (var i = min; i <= max; i += step) input.push(i);
         return input;
+    };
+    $scope.save_assistants = function(){
+        console.log($scope.assisData);
+        angular.element('#permissionModal').modal('hide');
+        $scope.number_of_assitants = 0;
+        $scope.total_input = 0;
+        $scope.assisData = {};
+        
     };
 
   }).
