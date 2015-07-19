@@ -10,7 +10,9 @@ var express = require('express'),
   morgan = require('morgan'),
   routes = require('./routes'),
   api = require('./routes/api'),
+  
   http = require('http'),
+  models = require('./models'),
   path = require('path');
 
 var app = module.exports = express();
@@ -51,16 +53,18 @@ app.get('/', routes.index);
 app.get('/partials/:name', routes.partials);
 
 // JSON API
-app.get('/api/name', api.name);
-
+app.get('/api/doctor', api.doctor);
+app.post('/api/create/assitants/batch',api.save_assistant);
 // redirect all others to the index (HTML5 history)
+
 app.get('*', routes.index);
 
 
 /**
  * Start Server
  */
-
-http.createServer(app).listen(app.get('port'), function () {
-  console.log('Express server listening on port ' + app.get('port'));
+models.sequelize.sync().then(function () {
+    http.createServer(app).listen(app.get('port'), function () {
+      console.log('Express server listening on port ' + app.get('port'));
+    });
 });

@@ -1,5 +1,5 @@
 {
-  "name": "Doctor Assitant Dashboard",
+  "name": "Doctor_Assitant_Dashboard",
   "version": "0.0.1",
   "private": true,
   "dependencies": {
@@ -9,6 +9,10 @@
     "express-error-handler": "^1.0.1",
     "jade": "~0.31.2",
     "method-override": "^1.0.0",
-    "morgan": "^1.0.0"
+    "morgan": "^1.0.0",
+    "mysql": "^2.8.0",
+    "sequelize": "^2.0.0-rc1",
+    "sequelize-cli": "^1.7.2",
+    "sqlite3": "^3.0.9"
   }
 }

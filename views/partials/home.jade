@@ -15,11 +15,11 @@ div
     
     div.row(ng-if="total_input > 0")
         form(name="assisForm", novalidate)
-            div.form-group(ng-repeat="assis in assisData.assistants", ng-class="{ 'has-error' : assisFieldForm.ass_name.$invalid }")
+            div.form-group(ng-repeat="assis in assisData.assistants", ng-class="{ 'has-error' : assisFieldForm.name.$invalid }")
                 ng-form(name="assisFieldForm")
                     label Assistant Name:
-                    input.form-control(type="text",name="ass_name", ng-model="assis.ass_name",required,ng-minlength="3")
-                    p.help-block(ng-show="assisFieldForm.ass_name.$invalid && assisFieldForm.ass_name.$dirty") Please Enter a Valid Name for Assistant  
+                    input.form-control(type="text",name="name", ng-model="assis.name",required,ng-minlength="3")
+                    p.help-block(ng-show="assisFieldForm.name.$invalid && assisFieldForm.name.$dirty") Please Enter a Valid Name for Assistant  
             
             button.btn.btn-primary(ng-disabled="assisForm.$invalid", ng-show="total_input>0",data-toggle="modal" ,data-target="#permissionModal") Proceed
     
@@ -35,10 +35,10 @@ div
                     div(ng-if="assisData.assistants")
                         ul.nav.nav-tabs(role="tablist")
                             li(role="presentation",ng-repeat="assis in assisData.assistants",ng-class="{'active': $index == 0}")
-                                a(aria-control="{{$index}}",role="tab",data-toggle="tab",ng-click="change_tab($index)") {{assis.ass_name}}{{show}}
+                                a(aria-control="{{$index}}",role="tab",data-toggle="tab",ng-click="change_tab($index)") {{assis.name}}{{show}}
                         div.tab-content
                             div.tab-pane(ng-repeat="assis in assisData.assistants",ng-class="{'active': show_tab == $index}")
-                                h3  Set Permissions For - {{assis.ass_name}}
+                                h3  Set Permissions For - {{assis.name}}
                                 table.table.table-striped
                                     thead
                                         tr
